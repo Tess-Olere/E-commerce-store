@@ -12,7 +12,7 @@ export default function CategoryId() {
   return (
     <Container style={{marginTop: '5rem'}}>
     {loading && <Spinner />}
-    {error || data && (
+    {error || (data && (
         <>
         {error && <p>{error.message}</p>}
         {data && (
@@ -27,7 +27,7 @@ export default function CategoryId() {
          </ResponsiveMasonry>
         )}
         </>
-    )}
+    ))}
     </Container>
   )
 }
