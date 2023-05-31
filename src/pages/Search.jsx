@@ -33,15 +33,17 @@ export default function Search() {
         navigate({search: params.toString()})
      }, [query, navigate])
 
-     const filterData = data.filter((res) => {
-         const filter = res.title === query || res.category?.name === query
+     // eslint-disable-next-line
+     const filteredData = data.filter((res) => {
+         const filtered = res.title === query || res.category?.name === query
          if (query !== '') {
              return (
                  res.title.toLowerCase().includes(query) ||
-                 res.category?.name.toLowerCase().includes(query) || filter
+                 res.category?.name.toLowerCase().includes(query) || filtered
              )
          }
      })
+  
   return (
     <Container style={{marginTop: '7rem'}}>
         <div className='position-relative pb-2 mb-4 border-bottom border-dark'>
@@ -57,18 +59,18 @@ export default function Search() {
  
      {loading && <Spinner />}
     {error || 
-        (filterData && (
+        (filteredData && (
         <div className='mt-5'>
             {error && <p>{error.message}</p>}
             <div className='d-flex align-items-center'>
-                <p>{filterData.length} results</p>
+                <p>{filteredData.length} results</p>
             </div>
-            {filterData && (
+            {filteredData && (
                  <ResponsiveMasonry
                  columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1200: 4}}
              >
                  <Masonry gutter='30px'>
-                    {filterData.map((product) => (
+                    {filteredData.map((product) => (
                     <ProductContainer  key={product.id} {...product}/> 
                     ))} 
                  </Masonry>
