@@ -35,7 +35,7 @@ export default function Search() {
 
      
      const filteredData = data.filter((res) => {
-         const filtered = res.title === query || res.category?.name === query
+         const filtered = res?.title === query || res.category?.name === query
          if (query !== '') {
              return (
                  res.title.toLowerCase().includes(query) ||
