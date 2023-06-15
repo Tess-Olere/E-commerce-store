@@ -33,7 +33,7 @@ export default function Search() {
         navigate({search: params.toString()})
      }, [query, navigate])
 
-     // eslint-disable-next-line
+     
      const filteredData = data.filter((res) => {
          const filtered = res.title === query || res.category?.name === query
          if (query !== '') {
